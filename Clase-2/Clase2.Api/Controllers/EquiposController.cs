@@ -66,5 +66,18 @@ namespace Clase2.Api.Controllers
             return Ok(equipoEncontrado);
         }
 
+        [HttpDelete("/id/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var equipoEncontrado = _equipoServicio.ObtenerEquipoPorId(id);
+            if (equipoEncontrado == null)
+            {
+                return NotFound(); 
+            }
+
+            _equipoServicio.Eliminar(equipoEncontrado);
+            return NoContent(); 
+        }
+
     }
 }
